@@ -1,5 +1,6 @@
 # Hotel Miranda
 This is a project of the Training React Full Stack
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TKadyear/hotel-miranda/Deploy)
 ## Overview
 Coming soon...
 ### The challenge
