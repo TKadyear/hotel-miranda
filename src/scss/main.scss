@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
+@import url(resetScss.scss);
 //Color variables
 $black: rgb(17, 17, 17); // También hay enos que es #222222
 $grey: rgba(133, 133, 133, 0.3);
@@ -6,7 +8,7 @@ $booking: rgba(189, 189, 189, 1); //Me parece un botón de disabled
 $offer:rgba(222, 87, 119, 1);
 $btn-border: rgba(255, 255, 255, 0.3);
 $text-input: rgba(104, 104, 104, 1);
-$light-grey: rgba(248, 248, 248, 1); //Se usa en el footer de abajo y ciertos elementos grisáceos
+$light-grey: rgba(248, 248, 248, 1); //Se usa en el footer de abajo y ciertos elementos grisáceos  || Hay cierta inconsistencia con los colores.
 $other-black: rgba(34, 34, 34, 1);
 $number-grey: rgba(34, 34, 34, 0.04);
 $subtitle:rgba(119, 119, 119, 1);
@@ -14,5 +16,10 @@ $feature-dark-bg: rgba(41, 41, 41, 1);
 $arrow: rgba(220, 220, 220, 1);
 
 //Box-shadow
-$box-shadow-logo: 0 14px 24px rgba(139, 139, 139, 0.25);
+$box-shadow-logo-card: 0 14px 24px rgba(139, 139, 139, 0.25);
 $box-shadow-items: 0px 8px 16px rgba(138, 138, 138, 0.05);
+$box-shadow-card-founder: 0px 14px 24px rgba(190, 173, 142, 0.27);
+
+body {
+  font-family: 'Archivo', sans-serif;
+}
