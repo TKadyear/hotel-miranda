@@ -30,12 +30,12 @@ body {
 @mixin btn($bg, $text-color, $border: $bg, $bg-hover: $text-color, $text-hover: $bg) {
   font-family: 'Archivo', sans-serif;
   max-width: 290px;
-  height: 60px;
+  height: 3.75rem;
   background: $bg;
   padding: 0.75rem 2rem;
   color: $text-color;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 15px;
   letter-spacing: 2.8px;
   text-transform: uppercase;
@@ -50,7 +50,6 @@ body {
 
 .container-btn {
   background-color: $feature-dark-bg;
-  height: 250px;
   padding: 10px;
   color: $white;
 }
@@ -64,9 +63,9 @@ body {
 }
 
 @mixin btn-social {
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
   background-color: $light-grey;
   transition: fill 200ms, background 400ms;
 
@@ -96,7 +95,7 @@ body {
   font-family: 'Roboto', sans-serif;
   /*TODO debería ser Roboto*/
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 19px;
   display: grid;
   gap: 14px;
@@ -124,10 +123,36 @@ label {
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
-  line-height: 18px;
+  line-height: 1.125rem;
   letter-spacing: 2.8px;
 }
 
 .small-uppercase {
   @include section__title;
+}
+
+.title {
+  font-family: 'Old Standard TT';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 3.75rem;
+  letter-spacing: -1.2px;
+}
+
+@mixin base-text ($font, $textColor) {
+  font-family: $font;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 24px;
+  color: $textColor;
+}
+
+.text {
+  @include base-text("Archivo", $subtitle);
+}
+
+.text-black {
+  @include base-text("Roboto", $black);
+  line-height: 22px;
 }
