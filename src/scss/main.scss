@@ -27,6 +27,7 @@ body {
 }
 
 
+
 @mixin btn($bg, $text-color, $border: $bg, $bg-hover: $text-color, $text-hover: $bg) {
   font-family: 'Archivo', sans-serif;
   max-width: 290px;
@@ -41,6 +42,8 @@ body {
   text-transform: uppercase;
   transition: 0.5s;
   border: 2px solid $border;
+  margin: 12px 0;
+  margin-right: 15px;
 
   &:hover {
     background-color: $bg-hover;
@@ -48,11 +51,7 @@ body {
   }
 }
 
-.container-btn {
-  background-color: $feature-dark-bg;
-  padding: 10px;
-  color: $white;
-}
+
 
 .btn-primary {
   @include btn($primary, $white);
@@ -127,18 +126,7 @@ label {
   letter-spacing: 2.8px;
 }
 
-.small-uppercase {
-  @include section__title;
-}
 
-.title {
-  font-family: 'Old Standard TT';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 3rem;
-  line-height: 3.75rem;
-  letter-spacing: -1.2px;
-}
 
 @mixin base-text ($font, $textColor, $fontSize: 0.875rem) {
   font-family: $font;
@@ -146,6 +134,23 @@ label {
   font-size: $fontSize;
   line-height: 24px;
   color: $textColor;
+}
+
+@mixin m-tb ($value) {
+  margin-top: $value;
+  margin-bottom: $value;
+}
+
+.title {
+  @include base-text('Old Standard TT', inherit, 3.5rem);
+  @include m-tb(2.5rem);
+  line-height: 3.75rem;
+  letter-spacing: -1.2px;
+}
+
+.small-uppercase {
+  @include section__title;
+  @include m-tb(2rem);
 }
 
 .text {
@@ -166,4 +171,28 @@ label {
   @include base-text("Old Standard TT", $other-black, 1.875rem);
   line-height: 30px;
   letter-spacing: -0.9px;
+}
+
+
+.container {
+  max-width: 1170px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: $feature-dark-bg;
+  padding: 4.6875rem 1.25rem;
+  color: $white;
+
+  .header__container {
+    // width: 75%;  media query
+    margin: 0 auto;
+    max-width: 660px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 216px;
+  }
 }
