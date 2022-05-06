@@ -1,19 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import url(resetScss.scss);
 //Color variables
 $black: rgb(17, 17, 17); // También hay enos que es #222222
 $grey: rgba(133, 133, 133, 0.3);
 $primary: rgb(190, 173, 142);
 $booking: rgba(189, 189, 189, 1); //Me parece un botón de disabled
-$offer:rgba(222, 87, 119, 1);
+$offer: rgba(222, 87, 119, 1);
 $btn-border: rgba(255, 255, 255, 0.3);
 $text-input: rgba(104, 104, 104, 1);
 $light-grey: rgba(248, 248, 248, 1); //Se usa en el footer de abajo y ciertos elementos grisáceos  || Hay cierta inconsistencia con los colores.
 $other-black: rgba(34, 34, 34, 1);
 $number-grey: rgba(34, 34, 34, 0.04);
-$subtitle:rgba(119, 119, 119, 1);
+$subtitle: rgba(119, 119, 119, 1);
 $feature-dark-bg: rgba(41, 41, 41, 1);
 $arrow: rgba(220, 220, 220, 1);
+$white: rgba(255, 255, 255, 1);
 
 //Box-shadow
 $box-shadow-logo-card: 0 14px 24px rgba(139, 139, 139, 0.25);
@@ -22,4 +24,110 @@ $box-shadow-card-founder: 0px 14px 24px rgba(190, 173, 142, 0.27);
 
 body {
   font-family: 'Archivo', sans-serif;
+}
+
+
+@mixin btn($bg, $text-color, $border: $bg, $bg-hover: $text-color, $text-hover: $bg) {
+  font-family: 'Archivo', sans-serif;
+  max-width: 290px;
+  height: 60px;
+  background: $bg;
+  padding: 0.75rem 2rem;
+  color: $text-color;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 15px;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  transition: 0.5s;
+  border: 2px solid $border;
+
+  &:hover {
+    background-color: $bg-hover;
+    color: $text-hover;
+  }
+}
+
+.container-btn {
+  background-color: $feature-dark-bg;
+  height: 250px;
+  padding: 10px;
+  color: $white;
+}
+
+.btn-primary {
+  @include btn($primary, $white);
+}
+
+.btn-secondary {
+  @include btn(transparent, $white, $grey, $grey, $white);
+}
+
+@mixin btn-social {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background-color: $light-grey;
+  transition: fill 200ms, background 400ms;
+
+  path {
+    fill: $subtitle;
+  }
+
+  &:hover {
+    background-color: $primary;
+
+    path {
+      fill: $white;
+    }
+  }
+}
+
+@mixin input {
+  border-bottom: 2px solid $primary;
+
+  &:focus-visible {
+    border-bottom: 2px solid $primary;
+    outline: none;
+  }
+}
+
+@mixin label ($text-color: $black) {
+  font-family: 'Roboto', sans-serif;
+  /*TODO debería ser Roboto*/
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: grid;
+  gap: 14px;
+  color: $text-color;
+}
+
+label {
+  @include label;
+}
+
+.input--bottom-border {
+  @include input;
+  width: 90%;
+  max-width: 335px;
+}
+
+.social-media {
+  @include btn-social
+}
+
+/*Para los mini titulos*/
+@mixin section__title {
+  text-transform: uppercase;
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 2.8px;
+}
+
+.small-uppercase {
+  @include section__title;
 }
