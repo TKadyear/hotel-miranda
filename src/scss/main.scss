@@ -140,10 +140,10 @@ label {
   letter-spacing: -1.2px;
 }
 
-@mixin base-text ($font, $textColor) {
+@mixin base-text ($font, $textColor, $fontSize: 0.875rem) {
   font-family: $font;
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: $fontSize;
   line-height: 24px;
   color: $textColor;
 }
@@ -158,7 +158,12 @@ label {
 }
 
 .small-title {
-  @include base-text("Old Standard TT", $other-black );
-  font-size: 1.5rem;
+  @include base-text("Old Standard TT", $other-black , 1.5rem);
   letter-spacing: -0.72px;
+}
+
+.md-title {
+  @include base-text("Old Standard TT", $other-black, 1.875rem);
+  line-height: 30px;
+  letter-spacing: -0.9px;
 }
