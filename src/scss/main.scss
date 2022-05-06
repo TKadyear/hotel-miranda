@@ -99,6 +99,7 @@ body {
   display: grid;
   gap: 14px;
   color: $text-color;
+  margin: 1rem auto;
 }
 
 label {
@@ -180,6 +181,7 @@ label {
   margin: 0 auto;
 }
 
+/* IMPROVE se podría hacer un scss para solo las cabeceras*/
 .header {
   background-color: $feature-dark-bg;
   padding: 4.6875rem 1.25rem;
@@ -194,5 +196,14 @@ label {
   .btn-primary,
   .btn-secondary {
     width: 216px;
+  }
+}
+
+.check__rooms {
+  background: $other-black;
+  padding: 2.25rem 1.25rem;
+
+  label {
+    color: $white;
   }
 }
