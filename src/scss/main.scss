@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import url(resetScss.scss);
+@import url(temporalClass.scss);
 //Color variables
 $black: rgb(17, 17, 17); // También hay enos que es #222222
 $grey: rgba(133, 133, 133, 0.3);
@@ -159,7 +160,7 @@ label {
 }
 
 .text-black-roboto {
-  @include base-text("Roboto", $black);
+  @include base-text("Roboto", inherit);
   line-height: 22px;
 }
 
@@ -169,7 +170,8 @@ label {
 }
 
 .md-title {
-  @include base-text("Old Standard TT", $other-black, 1.875rem);
+  @include base-text("Old Standard TT", inherit, 1.875rem);
+  @include m-tb(1.75rem);
   line-height: 30px;
   letter-spacing: -0.9px;
 }
@@ -203,7 +205,49 @@ label {
   background: $other-black;
   padding: 2.25rem 1.25rem;
 
-  label {
+  .check__rooms__form {
+    margin: 0 auto;
+    max-width: 335px;
+  }
+
+  .check__rooms__form label {
     color: $white;
   }
+}
+
+.about-us {
+  margin: 60px auto;
+
+  .about-us__container {
+    width: 90%;
+    max-width: 457px;
+    margin: 30px auto;
+
+  }
+
+  .btn-primary {
+    width: 216px;
+  }
+
+  .about-us__gallery {
+    max-width: 270px;
+    margin: 30px auto;
+
+  }
+
+  .about-us__gallery__info {
+    height: 300px;
+    text-align: center;
+    padding: 35px;
+
+    .text-black-roboto {
+      width: 200px;
+    }
+  }
+
+  .about-us__gallery__info--bg-dark {
+    background-color: $other-black;
+    color: $white;
+  }
+
 }
