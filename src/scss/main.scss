@@ -251,3 +251,33 @@ label {
   }
 
 }
+
+.rooms-slider {
+  text-align: center;
+}
+
+.promotional-video {
+  background-color: $other-black;
+  padding: 60px 20px 48px;
+  color: $white;
+
+  .small-uppercase {
+    color: $primary;
+  }
+
+  .btn-primary {
+    /*IMPROVE This changed is repeated a few times*/
+    width: 216px;
+  }
+
+  .promotional-video__container {
+    width: 90%;
+    max-width: 500px; // The max width with the iframe video is 1174px
+    margin: 0 auto;
+  }
+
+  .promotional-video__iframe {
+    height: 270px;
+    margin: 1rem auto;
+  }
+}
