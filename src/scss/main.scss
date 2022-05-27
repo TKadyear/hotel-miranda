@@ -128,8 +128,6 @@ label {
   letter-spacing: 2.8px;
 }
 
-
-
 @mixin base-text ($font, $textColor, $fontSize: 0.875rem) {
   font-family: $font;
   font-weight: 400;
@@ -280,4 +278,9 @@ label {
     height: 270px;
     margin: 1rem auto;
   }
+}
+
+.slide-feature__feature {
+  // max-width: 375px;
+  padding: 5rem 2.375rem;
 }
