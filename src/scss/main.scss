@@ -284,3 +284,33 @@ label {
   // max-width: 375px;
   padding: 5rem 2.375rem;
 }
+
+.food-menu {
+  padding: 20px;
+}
+
+.food {
+  margin: 16px auto;
+  display: grid;
+  grid-template-columns: 120px 185px;
+  align-items: center;
+  gap: 1.875rem;
+
+}
+
+.section__projects {
+  background: $other-black;
+  color: $white;
+  font-weight: 700;
+  text-align: center;
+
+  .text {
+    font-weight: 700;
+    color: $subtitle;
+    line-height: 22px;
+  }
+
+  strong {
+    font-size: 3.75rem;
+  }
+}
