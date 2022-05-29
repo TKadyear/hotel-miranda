@@ -1,7 +1,9 @@
+@import url(resetScss.scss);
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
-@import url(resetScss.scss);
 @import url(temporalClass.scss);
+@import url(footer.scss);
+
 //Color variables
 $black: rgb(17, 17, 17); // También hay enos que es #222222
 $grey: rgba(133, 133, 133, 0.3);
@@ -10,7 +12,7 @@ $booking: rgba(189, 189, 189, 1); //Me parece un botón de disabled
 $offer: rgba(222, 87, 119, 1);
 $btn-border: rgba(255, 255, 255, 0.3);
 $text-input: rgba(104, 104, 104, 1);
-$light-grey: rgba(248, 248, 248, 1); //Se usa en el footer de abajo y ciertos elementos grisáceos  || Hay cierta inconsistencia con los colores.
+$light-gray: rgba(248, 248, 248, 1); //Se usa en el footer de abajo y ciertos elementos grisáceos  || Hay cierta inconsistencia con los colores.
 $other-black: rgba(34, 34, 34, 1);
 $number-grey: rgba(34, 34, 34, 0.04);
 $subtitle: rgba(119, 119, 119, 1);
@@ -66,7 +68,7 @@ body {
   width: 2.5rem;
   height: 2.5rem;
   padding: 0.5rem;
-  background-color: $light-grey;
+  background-color: $light-gray;
   transition: fill 200ms, background 400ms;
 
   path {
@@ -113,8 +115,14 @@ label {
   max-width: 335px;
 }
 
+.social-media__container {
+  display: flex;
+  gap: 0.625rem;
+}
+
 .social-media {
-  @include btn-social
+  @include btn-social;
+  cursor: pointer;
 }
 
 /*Para los mini titulos*/

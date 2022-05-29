@@ -1,0 +1,47 @@
+ /*Se usa en el footer de abajo y ciertos elementos grisáceos  || Hay cierta inconsistencia con los colores.
+*/
+
+ .footer {
+   background: url(../../public/img/footer.png);
+   font-family: 'Old Standard TT';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 24px;
+   color: #222222;
+ }
+
+ .footer__container {
+   padding: 32px 22px;
+
+ }
+
+ .footer__info-services__list {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr 1fr;
+   list-style-type: "+ ";
+   font-size: 16px;
+   line-height: 48px;
+   color: #777777;
+ }
+
+ .footer__contact__info {
+   margin: 3.75rem auto;
+
+   &:first-of-type {
+     margin-top: 2rem;
+   }
+ }
+
+ .footer__copyright {
+   padding: 1rem;
+   width: 100%;
+   background-color: rgba(248, 248, 248, 1);
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 16px;
+   line-height: 19px;
+   letter-spacing: -0.48px;
+ }
