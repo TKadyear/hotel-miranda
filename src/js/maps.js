@@ -1,4 +1,5 @@
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
+import { polygonRegion } from "./spain_polygon_region";
 let geocoder;
 let map;
 // Initialize and add the map
@@ -100,6 +101,22 @@ function initMap() {
     );
     infoWindow.open(map);
   }
+
+  // Define the LatLng coordinates for the polygon's path.
+  const andaluciaCoords = [...polygonRegion[4].coordenates];
+
+  // Construct the polygon.
+  const bermudaTriangle = new google.maps.Polygon({
+    paths: andaluciaCoords,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35,
+  });
+
+  bermudaTriangle.setMap(map);
+
 }
 
 const locations = [
