@@ -1,5 +1,5 @@
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
-import { polygonRegion } from "./spain_polygon_region";
+import { polygonRequiredRegion as polygonRegion, listHotelLocations as locations } from "./spain_polygon_region";
 let geocoder;
 let map;
 // Initialize and add the map
@@ -119,15 +119,6 @@ function initMap() {
 
 }
 
-const locations = [
-  { lat: 40.4286, lng: -3.715 },
-  { lat: 40.45135, lng: -3.687 },
-  { lat: 40.410, lng: -3.673 },
-  { lat: 43.370, lng: -8.396 },
-  { lat: 36.719, lng: -4.433 },
-  { lat: 41.654, lng: -0.893 },
-  { lat: 28.057, lng: -16.715 }
-];
 
 window.initMap = initMap;
 function codeAddress() {

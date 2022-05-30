@@ -12423,10 +12423,10 @@ const comunidadesAutonomas = [
     'Melilla',
 ];
 
-export const polygonRegion = comunidadesAutonomas.map((region, index) => {
+const polygonRegion = comunidadesAutonomas.map((region, index) => {
     let listCoordenates = espanaComunidades[index];
-    if (listCoordenates.length < 2){
-        listCoordenates=[...espanaComunidades[index]].flat();
+    if (listCoordenates.length < 2) {
+        listCoordenates = [...espanaComunidades[index]].flat();
     };
     const polygon = {
         coordenates: listCoordenates,
@@ -12434,3 +12434,15 @@ export const polygonRegion = comunidadesAutonomas.map((region, index) => {
     };
     return polygon;
 });
+export const listHotelLocations = [
+    { region: "Madrid, Comunidad de", lat: 40.4286, lng: -3.715 },
+    { region: "Madrid, Comunidad de", lat: 40.45135, lng: -3.687 },
+    { region: "Madrid, Comunidad de", lat: 40.410, lng: -3.673 },
+    { region: "Galicia", lat: 43.370, lng: -8.396 },
+    { region: "Andalucía", lat: 36.719, lng: -4.433 },
+    { region: "Aragón", lat: 41.654, lng: -0.893 },
+    { region: "Canarias", lat: 28.057, lng: -16.715 }
+];
+export const requiredRegion = new Set(listHotelLocations.map(location => location.region));
+
+export const polygonRequiredRegion = polygonRegion.filter(location => requiredRegion.has(location.region));
