@@ -37,6 +37,11 @@ body {
   /* The width is the width of the web page */
 }
 
+.gm-style .gm-style-iw-c {
+  border-radius: 0;
+
+}
+
 @mixin btn($bg, $text-color, $border: $bg, $bg-hover: $text-color, $text-hover: $bg) {
   font-family: 'Archivo', sans-serif;
   max-width: 290px;
