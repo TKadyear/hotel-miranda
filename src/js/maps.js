@@ -1,5 +1,5 @@
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
-import { polygonRequiredRegion as polygonRegion, listHotelLocations as locations } from "./spain_polygon_region";
+import { polygonRequiredRegion as polygonRegion, listHotelLocations as locations, requiredRegion } from "./spain_polygon_region";
 let geocoder;
 let map;
 // Initialize and add the map
@@ -139,3 +139,15 @@ function codeAddress() {
 }
 
 document.querySelector("#btn-geocoding").addEventListener("click", codeAddress)
+
+const createSelectOptions = () => {
+  const select = document.querySelector("#filter-region");
+  Array.from(requiredRegion).forEach(region => {
+    const template = /*html */`
+    <option value="${region}">${region}</option>
+    `
+    select.insertAdjacentHTML("afterbegin", template);
+  });
+
+};
+createSelectOptions();
