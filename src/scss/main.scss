@@ -30,7 +30,12 @@ body {
   font-family: 'Archivo', sans-serif;
 }
 
-
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
 
 @mixin btn($bg, $text-color, $border: $bg, $bg-hover: $text-color, $text-hover: $bg) {
   font-family: 'Archivo', sans-serif;
