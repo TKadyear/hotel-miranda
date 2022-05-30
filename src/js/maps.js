@@ -15,6 +15,8 @@ function initMap() {
     content: "",
     disableAutoPan: true,
   });
+
+
   //TODO Problem with the marker in Málaga because the marker is on the Mediterrean Sea
   // TODO Change the color of the clustered pins
   //Custom Marker
@@ -55,7 +57,12 @@ function initMap() {
       mark.setAnimation(google.maps.Animation.BOUNCE);
     }
   }
-
+  const locationButton = document.createElement("button");
+  let infoCurrentLocation = new google.maps.InfoWindow();
+  locationButton.textContent = "Pan to Current Location";
+  locationButton.classList.add("custom-map-control-button");
+  locationButton.classList.add("btn-primary");
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
 }
 
@@ -70,3 +77,42 @@ const locations = [
 ];
 
 window.initMap = initMap;
+// const locationButton = document.createElement("button");
+// let infoCurrentLocation = new google.maps.InfoWindow();
+// locationButton.textContent = "Pan to Current Location";
+// locationButton.classList.add("custom-map-control-button");
+// map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+// locationButton.addEventListener("click", () => {
+//   // Try HTML5 geolocation.
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(
+//       (position) => {
+//         const pos = {
+//           lat: position.coords.latitude,
+//           lng: position.coords.longitude,
+//         };
+
+//         infoCurrentLocation.setPosition(pos);
+//         infoCurrentLocation.setContent("Location found.");
+//         infoCurrentLocation.open(map);
+//         map.setCenter(pos);
+//       },
+//       () => {
+//         handleLocationError(true, infoCurrentLocation, map.getCenter());
+//       }
+//     );
+//   } else {
+//     // Browser doesn't support Geolocation
+//     handleLocationError(false, infoCurrentLocation, map.getCenter());
+//   }
+// });
+// }
+
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   infoWindow.setPosition(pos);
+//   infoWindow.setContent(
+//     browserHasGeolocation
+//       ? "Error: The Geolocation service failed."
+//       : "Error: Your browser doesn't support geolocation."
+//   );
+//   infoCurrentLocation.open(map);

@@ -53,6 +53,7 @@ body {
   border: 2px solid $border;
   margin: 12px 0;
   margin-right: 15px;
+  cursor: pointer;
 
   &:hover {
     background-color: $bg-hover;
