@@ -1,13 +1,17 @@
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
+let geocoder;
+let map;
 // Initialize and add the map
 function initMap() {
+  //initializeGeocoder
+  geocoder = new google.maps.Geocoder();
   // The location of oxygen
   const oxygen = {
     lat: 40.428,
     lng: -3.715
   };
   // The map, centered at oxygen
-  const map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: oxygen,
   });
@@ -109,3 +113,21 @@ const locations = [
 ];
 
 window.initMap = initMap;
+function codeAddress() {
+  let address = document.querySelector("#user-geocoding").value;
+  geocoder.geocode({ 'address': address }, function (results, status) {
+    if (status == 'OK') {
+      console.log(results);
+      console.log(results[0].geometry.location);
+      map.setCenter(results[0].geometry.location);
+      let marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+document.querySelector("#btn-geocoding").addEventListener("click", codeAddress)
