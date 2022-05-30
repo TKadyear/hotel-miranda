@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Hotel Miranda-Princesa",
+    "lat": 40.4286699,
+    "lng": -3.715062
+  },
+  {
+    "name": "Hotel Miranda-Bernabeu",
+    "lat": 40.45135379,
+    "lng": -3.687973
+  },
+  {
+    "name": "Hotel Miranda-Retiro",
+    "lat": 40.410957,
+    "lng": -3.673750
+  },
+  {
+    "name": "Hotel Miranda-La Coruña",
+    "lat": 43.370375,
+    "lng": -8.396625
+  },
+  {
+    "name": "Hotel Miranda-Málaga",
+    "lat": 36.719132,
+    "lng": -4.433280
+  },
+  {
+    "name": "Hotel Miranda-Zaragoza",
+    "lat": 41.654628,
+    "lng": -0.893108
+  },
+  {
+    "name": "Hotel Miranda-Tenerife",
+    "lat": 28.057291,
+    "lng": -16.715422
+  }
+]

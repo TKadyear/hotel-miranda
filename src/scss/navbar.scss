@@ -1,0 +1,44 @@
+.nav__container {
+  min-height: 70px;
+  padding: 1.25rem;
+  height: max-content;
+}
+
+.nav__logo__container {
+  display: inline;
+  text-decoration: none;
+  transition: 200ms;
+
+
+}
+
+.nav__menu__a {
+  text-decoration: none;
+  position: relative;
+}
+
+.nav__menu {
+  display: none;
+}
+
+#hamburger {
+  cursor: pointer;
+  appearance: none;
+  width: 20px;
+  height: 12px;
+  background: url(../assets/icons/menu.svg) no-repeat;
+  border: 0px;
+  border-radius: 0;
+}
+
+#hamburger:checked~.nav__menu {
+  display: block;
+  background: white;
+  width: 75vw;
+}
+
+#hamburger:checked {
+  width: 14px;
+  height: 14px;
+  background-image: url(../assets/icons/cross-menu.svg);
+}

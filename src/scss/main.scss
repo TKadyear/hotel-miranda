@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import url(temporalClass.scss);
 @import url(footer.scss);
+@import url(navbar.scss);
 
 //Color variables
 $black: rgb(17, 17, 17); // También hay enos que es #222222
@@ -321,4 +322,19 @@ label {
   strong {
     font-size: 3.75rem;
   }
+}
+
+.nav__logo__container {
+  font-weight: bold;
+  text-transform: uppercase;
+
+}
+
+span.logo {
+  background-color: aqua;
+  box-shadow: $box-shadow-logo-card;
+  width: 36px;
+  height: 36px;
+  // max-width: 80px;
+  // max-height: 80px;
 }
