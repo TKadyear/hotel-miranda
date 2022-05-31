@@ -1,4 +1,3 @@
-import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import { polygonRequiredRegion as polygonRegion, listHotelLocations as locations, requiredRegion } from "./spain_polygon_region";
 let geocoder;
 let map;
@@ -54,7 +53,7 @@ function initMap() {
   }
   );
   // Add a marker clusterer to manage the markers.
-  const markerCluster = new MarkerClusterer({ map, markers });
+  const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
   function toggleBounce(mark) {
     if (mark.getAnimation() !== null) {
       mark.setAnimation(null);
@@ -121,6 +120,8 @@ function initMap() {
 
 
 window.initMap = initMap;
+
+
 function codeAddress() {
   let address = document.querySelector("#user-geocoding").value;
   geocoder.geocode({ 'address': address }, function (results, status) {
