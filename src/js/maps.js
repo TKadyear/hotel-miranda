@@ -1,6 +1,8 @@
-import { polygonRequiredRegion as polygonRegion, listHotelLocations as locations, requiredRegion } from "./spain_polygon_region";
+import { polygonRequiredRegion as polygonRegion, listHotelLocations, requiredRegion } from "./spain_polygon_region";
 let geocoder;
 let map;
+let locations = [...listHotelLocations];
+
 // Initialize and add the map
 function initMap() {
   //initializeGeocoder
@@ -20,9 +22,12 @@ function initMap() {
     disableAutoPan: true,
   });
 
+  createMarkers();
+  userGeolocation();
+};
 
-  //TODO Problem with the marker in Málaga because the marker is on the Mediterrean Sea
-  // TODO Change the color of the clustered pins
+let markers;
+function createMarkers() {
   //Custom Marker
   const svgMarker = {
     path: "M30.623 0A30.624 30.624 0 0 0 0 30.623a30.624 30.624 0 0 0 2.898 12.842c.783 2.234 1.817 4.484 3.19 6.506 5.423 7.986 15.064 28.031 15.064 28.031l9.5 17.875L11.594 54.52a30.624 30.624 0 0 0 19.029 6.728 30.624 30.624 0 0 0 19.272-6.935L30.652 96.067l9.5-17.875s9.642-20.044 15.065-28.03c1.695-2.497 2.877-5.342 3.701-8.073a30.624 30.624 0 0 0 2.33-11.467A30.624 30.624 0 0 0 30.623 0zM15.33 11.873h26.25a1.875 1.875 0 0 1 1.875 1.875v9.375h3.75v18.75h1.875v3.75h-37.5v-3.75h1.875V13.748a1.877 1.877 0 0 1 1.875-1.875zm1.875 3.75v26.25h11.25v-18.75h11.25v-7.5h-22.5zm3.75 3.75h3.75v3.75h-3.75v-3.75zm0 7.5h3.75v3.75h-3.75v-3.75zm11.25 0v15h3.75v-11.25h3.75v11.25h3.75v-15h-11.25zm-11.25 7.5h3.75v3.75h-3.75v-3.75z",
@@ -36,9 +41,8 @@ function initMap() {
     anchor: new google.maps.Point(15, 30),
   };
 
-  // Create an array of alphabetical characters used to label the markers.
   // Add some markers to the map.
-  const markers = locations.map((position, i) => {
+  markers = locations.map((position, i) => {
     const marker = new google.maps.Marker({
       position,
       icon: svgMarker
@@ -50,8 +54,7 @@ function initMap() {
       toggleBounce(marker);
     });
     return marker;
-  }
-  );
+  });
   // Add a marker clusterer to manage the markers.
   const markerCluster = new markerClusterer.MarkerClusterer({ map, markers });
   function toggleBounce(mark) {
@@ -59,8 +62,26 @@ function initMap() {
       mark.setAnimation(null);
     } else {
       mark.setAnimation(google.maps.Animation.BOUNCE);
+    };
+  };
+};
+
+
+function codeAddress() {
+  let address = document.querySelector("#user-geocoding").value;
+  geocoder.geocode({ 'address': address }, function (results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      let marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
     }
-  }
+  });
+}
+function userGeolocation() {
   const locationButton = document.createElement("button");
   let infoCurrentLocation = new google.maps.InfoWindow();
   locationButton.textContent = "Pan to Current Location";
@@ -89,7 +110,7 @@ function initMap() {
     } else {
       // Browser doesn't support Geolocation
       handleLocationError(false, infoCurrentLocation, map.getCenter());
-    }
+    };
   });
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -99,56 +120,56 @@ function initMap() {
         : "Error: Your browser doesn't support geolocation."
     );
     infoWindow.open(map);
-  }
+  };
+};
 
+document.querySelector("#btn-geocoding").addEventListener("click", codeAddress);
+
+const createSelectOptions = () => {
+  const select = document.querySelector("#filter-region");
+  const listRequiredRegion = Array.from(requiredRegion);
+  listRequiredRegion.forEach(region => {
+    const template = /*html */`
+    <option value="${region}">${region}</option>
+    `
+    select.insertAdjacentHTML("afterbegin", template);
+  });
+  select.addEventListener("change", () => {
+    const regionSelected = select.value;
+    const isValidRegion = listRequiredRegion.some(el => el === regionSelected);
+    if (isValidRegion) {
+      drawPolygonRegion(regionSelected);
+      locations = listHotelLocations.filter(hotel => hotel.region === regionSelected);
+    } else {
+      polygonCountry.setMap(null);
+      locations = [...listHotelLocations];
+    };
+    createMarkers();
+  });
+
+};
+let polygonCoords;
+let polygonCountry;
+function drawPolygonRegion(region) {
+  if (polygonCountry) {// Clear the current polygon
+    polygonCountry.setMap(null);
+  };
+  const regionSelected = polygonRegion.find(element => element.region === region);
   // Define the LatLng coordinates for the polygon's path.
-  const andaluciaCoords = [...polygonRegion[4].coordenates];
+  polygonCoords = regionSelected.coordenates;
 
   // Construct the polygon.
-  const bermudaTriangle = new google.maps.Polygon({
-    paths: andaluciaCoords,
+  polygonCountry = new google.maps.Polygon({
+    paths: polygonCoords,
     strokeColor: "#FF0000",
     strokeOpacity: 0.8,
     strokeWeight: 2,
     fillColor: "#FF0000",
     fillOpacity: 0.35,
   });
-
-  bermudaTriangle.setMap(map);
-
-}
-
-
-window.initMap = initMap;
-
-
-function codeAddress() {
-  let address = document.querySelector("#user-geocoding").value;
-  geocoder.geocode({ 'address': address }, function (results, status) {
-    if (status == 'OK') {
-      console.log(results);
-      console.log(results[0].geometry.location);
-      map.setCenter(results[0].geometry.location);
-      let marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
-
-document.querySelector("#btn-geocoding").addEventListener("click", codeAddress)
-
-const createSelectOptions = () => {
-  const select = document.querySelector("#filter-region");
-  Array.from(requiredRegion).forEach(region => {
-    const template = /*html */`
-    <option value="${region}">${region}</option>
-    `
-    select.insertAdjacentHTML("afterbegin", template);
-  });
-
+  // Create a new polygon on the map
+  polygonCountry.setMap(map);
 };
 createSelectOptions();
+
+window.initMap = initMap;
