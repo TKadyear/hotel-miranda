@@ -67,8 +67,9 @@ function createMarkers() {
 };
 
 
+let address = document.querySelector("#user-geocoding").value;
 function codeAddress() {
-  let address = document.querySelector("#user-geocoding").value;
+  address = document.querySelector("#user-geocoding").value;
   geocoder.geocode({ 'address': address }, function (results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
@@ -81,6 +82,7 @@ function codeAddress() {
     }
   });
 }
+let userLocation;
 function userGeolocation() {
   const locationButton = document.createElement("button");
   let infoCurrentLocation = new google.maps.InfoWindow();
@@ -93,15 +95,15 @@ function userGeolocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const pos = {
+          userLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
 
-          infoCurrentLocation.setPosition(pos);
+          infoCurrentLocation.setPosition(userLocation);
           infoCurrentLocation.setContent("You're here.");
           infoCurrentLocation.open(map);
-          map.setCenter(pos);
+          map.setCenter(userLocation);
         },
         () => {
           handleLocationError(true, infoCurrentLocation, map.getCenter());
@@ -171,5 +173,28 @@ function drawPolygonRegion(region) {
   polygonCountry.setMap(map);
 };
 createSelectOptions();
+
+function getDistanceMatrix(origin, destinations) {
+  console.log(origin)
+  const service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [origin],
+      destinations: [destinations],
+      travelMode: 'DRIVING',
+    })
+    .then(response => { console.log(response) });
+
+};
+document.querySelector("#btn-nearestHotel").addEventListener("click", () => {
+  if (userLocation) {
+    const destinations = locations.map(location => ({ lat: location.lat, lng: location.lng }));
+    console.log(destinations);
+    userLocation ? getDistanceMatrix(userLocation, destinations) : getDistanceMatrix(address, destinations);
+  } else {
+    alert("Hay que poner un punto de partida");
+  }
+});
+
 
 window.initMap = initMap;
